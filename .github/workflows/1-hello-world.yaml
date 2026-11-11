@@ -7,7 +7,7 @@ on:
 
 jobs:
   hello-world-job:
-    if: true
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: echo text to terminal
