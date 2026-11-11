@@ -7,7 +7,7 @@ on:
 
 jobs:
   hello-artifact-job:
-    if: true
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Gather directory info
