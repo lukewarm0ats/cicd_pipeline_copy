@@ -1,0 +1,33 @@
+name: hello_artifact
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  hello-artifact-job:
+    if: false
+    runs-on: ubuntu-latest
+    steps:
+      - name: Gather directory info
+        run: |
+          echo "Collecting directory info..."
+
+          DIR=$(pwd)
+          FILECOUNT=$(ls -1 | wc -l)
+
+          # Create markdown table
+          echo "| Property               | Value      |" >> system-info.md
+          echo "|------------------------|------------|" >> system-info.md
+          echo "| **Working Directory**  | $DIR       |" >> system-info.md
+          echo "| **Files in Directory** | $FILECOUNT |" >> system-info.md
+
+          echo "Markdown report generated:"
+          cat system-info.md
+
+      - name: upload system info artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: system-info
+          path: system-info.md
